@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: tds-project1-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_USERNAME
+        sync: false
+      - key: APP_SECRET
+        value: tds_project1
+      - key: MAX_RETRIES
+        value: "5"
+      - key: INITIAL_RETRY_DELAY
+        value: "1"
+      - key: MAX_RETRY_DELAY
+        value: "32"
