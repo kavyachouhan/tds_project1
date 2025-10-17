@@ -1,0 +1,16 @@
+name: Keep Server Alive
+
+on:
+  schedule:
+    # Run every 5 minutes (adjust as needed)
+    - cron: '*/5 * * * *'
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Server
+        run: |
+          curl -f https://tds-project1-6rk8.onrender.com/ || echo "Server might be waking up"
+        continue-on-error: true
